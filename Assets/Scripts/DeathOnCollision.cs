@@ -20,6 +20,7 @@ public class DeathOnCollision : MonoBehaviour {
         {
             Debug.Log("you died");
             Application.LoadLevel("demo");
+            Time.timeScale = 1f;    //Resumes normal time in case character dies during time slowdown
         }
         if(other.gameObject.tag == "PickUp")
             {
