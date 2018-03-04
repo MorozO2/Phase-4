@@ -7,13 +7,11 @@ public class Blink : MonoBehaviour {
     
     public float shiftrange;    //Defines the distance for the teleport
     private float temprange;    //Variable for storing the temporary value of the teleport distance
-    
+    private LineRenderer lineRenderer;
 
     Vector2 position;           //Variable for the player position
     RaycastHit2D projection;   //Raycast used for projecting the teleport distance
-    RaycastHit2D projectionleft;
-    RaycastHit2D projectionup;
-    RaycastHit2D projectiondown;
+   
     void Start () {
 
         temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
@@ -35,7 +33,7 @@ public class Blink : MonoBehaviour {
          {
             projection = Physics2D.Raycast(position, Vector2.right, temprange);
             Debug.DrawRay(position, new Vector2(temprange, 0), Color.black);
-            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+           // Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
             if (projection.collider != null) //When the raycast hits a collider
             {
