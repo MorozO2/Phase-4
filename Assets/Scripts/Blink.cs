@@ -6,163 +6,149 @@ public class Blink : MonoBehaviour {
 
     
     public float shiftrange;    //Defines the distance for the teleport
-    private float temprangeright;    //Variable for storing the temporary value of the teleport distance
-    private float temprangeleft;
-    private float temprangeup;
-    private float temprangedown;
+    private float temprange;    //Variable for storing the temporary value of the teleport distance
+    
 
     Vector2 position;           //Variable for the player position
-    RaycastHit2D projectionright;    //Raycast used for projecting the teleport distance
+    RaycastHit2D projection;   //Raycast used for projecting the teleport distance
     RaycastHit2D projectionleft;
     RaycastHit2D projectionup;
     RaycastHit2D projectiondown;
     void Start () {
 
-        temprangeright = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
-        temprangeleft = shiftrange;
-        temprangeup = shiftrange;
-        temprangedown = shiftrange;
+        temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
+        
     }
 
 
     void Update()
     {
-
+        
         position = transform.position;  //sets "position" as transform.position (character's position)
 
 
-        //Creates 4 rays: to right, left, up and down
         
-        projectionright = Physics2D.Raycast(position, Vector2.right, temprangeright);     
-        Debug.DrawRay(position, new Vector2(temprangeright, 0), Color.black);
-
-        projectionleft = Physics2D.Raycast(position, Vector2.left, temprangeleft);
-        Debug.DrawRay(position, new Vector2(-temprangeleft, 0), Color.black);
-
-        projectionup = Physics2D.Raycast(position, Vector2.up, temprangeup);
-        Debug.DrawRay(position, new Vector2(0, temprangeup), Color.black);
-
-        projectiondown = Physics2D.Raycast(position, Vector2.down, temprangedown);
-        Debug.DrawRay(position, new Vector2(0, -temprangedown), Color.black);
-
-
-       
-        
-        
-        if (projectionright.collider != null) //When the raycast hits a collider
-        {
-            Debug.Log("hitright");          //Console shows that the ray hit a collider
-            Debug.Log(projectionright.point);    //Console shows where the ray the collider
-            temprangeright = projectionright.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
-        }
-        
-        else if (projectionleft.collider != null) //When the raycast hits a collider
-        {
-            Debug.Log("hitleft");          //Console shows that the ray hit a collider
-            Debug.Log(projectionleft.point);    //Console shows where the ray the collider
-            temprangeleft = projectionleft.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
-        }
-
-        else if (projectionup.collider != null) //When the raycast hits a collider
-        {
-            Debug.Log("hitup");          //Console shows that the ray hit a collider
-            Debug.Log(projectionup.point);    //Console shows where the ray the collider
-            temprangeup = projectionup.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
-        }
-
-        else if (projectiondown.collider != null) //When the raycast hits a collider
-        {
-            Debug.Log("hitdown");          //Console shows that the ray hit a collider
-            Debug.Log(projectiondown.point);    //Console shows where the ray the collider
-            temprangedown = projectiondown.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
-        }
-
-        else    //If the ray does not hit a collider
-        {
-            temprangeright = shiftrange;    //Resets the temprange to the default teleport distance (shiftrange)
-            temprangeleft = shiftrange;
-            temprangeup = shiftrange;
-            temprangedown = shiftrange;
-        }
-
 
         //TELEPORTING TO THE RIGHT
 
         if (Input.GetKey(KeyCode.RightArrow))   //When right arrow key is held down
          {
+            projection = Physics2D.Raycast(position, Vector2.right, temprange);
+            Debug.DrawRay(position, new Vector2(temprange, 0), Color.black);
             Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+
+            if (projection.collider != null) //When the raycast hits a collider
+            {
+                Debug.Log("hitright");          //Console shows that the ray hit a collider
+                Debug.Log(projection.point);    //Console shows where the ray the collider
+                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+
+               
+            }
+            else
+            {
+               temprange = shiftrange;
+            }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
             {
-                transform.Translate(new Vector2(temprangeright, 0f));    //Teleports the character by the teleport distance (temprange)
+                transform.Translate(new Vector2(temprange, 0f));    //Teleports the character by the teleport distance (temprange)
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.RightArrow))     //When right arrow key is released
-        {
-            Time.timeScale = 1f;    //Time flows normally
-        }
-
-
+     
 
         //TELEPORTING TO THE LEFT
         
-        if (Input.GetKey(KeyCode.LeftArrow))    //When left arrow key is held down
+        else if (Input.GetKey(KeyCode.LeftArrow))    //When left arrow key is held down
         {
+            projection = Physics2D.Raycast(position, Vector2.left, temprange);
+            Debug.DrawRay(position, new Vector2(-temprange, 0), Color.black);
+            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
-            Time.timeScale = 0.3f;
+            if (projection.collider != null) //When the raycast hits a collider
+            {
+                Debug.Log("hitright");          //Console shows that the ray hit a collider
+                Debug.Log(projection.point);    //Console shows where the ray the collider
+                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+
+
+            }
+            else
+            {
+                temprange = shiftrange;
+            }
+
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                transform.Translate(new Vector2(-temprangeleft, 0f));    //Teleports the character by the teleport distance (temprange)
+                transform.Translate(new Vector2(-temprange, 0f));    //Teleports the character by the teleport distance (temprange)
             }
            
         }
         
-        if (Input.GetKeyUp(KeyCode.LeftArrow))   //When left arrow key is released
-        {
-            Time.timeScale = 1f;
-        }
-
 
 
         //TELEPORTING UPWARDS
         
-        if (Input.GetKey(KeyCode.UpArrow))      //When up arrow key is held down
+        else if (Input.GetKey(KeyCode.UpArrow))      //When up arrow key is held down
         {
-            Time.timeScale = 0.3f;
+            projection = Physics2D.Raycast(position, Vector2.up, temprange);
+            Debug.DrawRay(position, new Vector2(0, temprange), Color.black);
+            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)) //Press shift to teleport
+            if (projection.collider != null) //When the raycast hits a collider
             {
-                transform.Translate(new Vector2(0f, temprangeup));    //Teleports the character by the teleport distance (temprange)
+                Debug.Log("hitup");          //Console shows that the ray hit a collider
+                Debug.Log(projection.point);    //Console shows where the ray the collider
+                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+
+
             }
+
+            else
+            {
+                temprange = shiftrange;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+            {
+                transform.Translate(new Vector2(0f, temprange));    //Teleports the character by the teleport distance (temprange)
+            }
+
+            
         }
         
-        if (Input.GetKeyUp(KeyCode.UpArrow))     //When up arrow key is released
-        {
-            Time.timeScale = 1f;
-        }
-
-
 
         //TELEPORTING DOWNWARDS
         
-        if (Input.GetKey(KeyCode.DownArrow))    //When down arrow key is held down
+        else if (Input.GetKey(KeyCode.DownArrow))    //When down arrow key is held down
         {
-            Time.timeScale = 0.3f;
+            projection = Physics2D.Raycast(position, Vector2.down, temprange);
+            Debug.DrawRay(position, new Vector2(0, -temprange), Color.black);
+            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)) 
+            if (projection.collider != null) //When the raycast hits a collider
             {
-                transform.Translate(new Vector2(0f, -temprangedown));    //Teleports the character by the teleport distance (temprange)
+                Debug.Log("hitdown");          //Console shows that the ray hit a collider
+                Debug.Log(projection.point);    //Console shows where the ray the collider
+                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+
+
             }
-            
+            else
+            {
+                temprange = shiftrange;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+            {
+                transform.Translate(new Vector2(0f, -temprange));    //Teleports the character by the teleport distance (temprange)
+            }
+
         }
 
-        if (Input.GetKeyUp(KeyCode.DownArrow))   //When down arrow key is released
+        else 
         {
             Time.timeScale = 1f;
         }
