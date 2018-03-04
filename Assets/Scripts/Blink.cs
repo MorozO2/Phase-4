@@ -7,7 +7,9 @@ public class Blink : MonoBehaviour {
     
     public float shiftrange;    //Defines the distance for the teleport
     private float temprange;    //Variable for storing the temporary value of the teleport distance
-    private LineRenderer lineRenderer;
+
+    public GameObject proj;
+    GameObject projclone;
 
     Vector2 position;           //Variable for the player position
     RaycastHit2D projection;   //Raycast used for projecting the teleport distance
@@ -15,7 +17,7 @@ public class Blink : MonoBehaviour {
     void Start () {
 
         temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
-        
+       
     }
 
 
@@ -33,7 +35,9 @@ public class Blink : MonoBehaviour {
          {
             projection = Physics2D.Raycast(position, Vector2.right, temprange);
             Debug.DrawRay(position, new Vector2(temprange, 0), Color.black);
-           // Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+
+            projclone = Instantiate(proj, projection.point, Quaternion.identity) as GameObject;
 
             if (projection.collider != null) //When the raycast hits a collider
             {
@@ -45,30 +49,31 @@ public class Blink : MonoBehaviour {
             }
             else
             {
-               temprange = shiftrange;
+                temprange = shiftrange;                
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
             {
                 transform.Translate(new Vector2(temprange, 0f));    //Teleports the character by the teleport distance (temprange)
             }
+           
         }
 
      
 
         //TELEPORTING TO THE LEFT
         
-        else if (Input.GetKey(KeyCode.LeftArrow))    //When left arrow key is held down
+        else if (Input.GetKey(KeyCode.LeftArrow))    
         {
             projection = Physics2D.Raycast(position, Vector2.left, temprange);
             Debug.DrawRay(position, new Vector2(-temprange, 0), Color.black);
-            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+            Time.timeScale = 0.3f;  
 
-            if (projection.collider != null) //When the raycast hits a collider
+            if (projection.collider != null) 
             {
-                Debug.Log("hitright");          //Console shows that the ray hit a collider
-                Debug.Log(projection.point);    //Console shows where the ray the collider
-                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+                Debug.Log("hitright");          
+                Debug.Log(projection.point);    
+                temprange = projection.distance;    
 
 
             }
@@ -80,7 +85,7 @@ public class Blink : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                transform.Translate(new Vector2(-temprange, 0f));    //Teleports the character by the teleport distance (temprange)
+                transform.Translate(new Vector2(-temprange, 0f));   
             }
            
         }
@@ -89,18 +94,17 @@ public class Blink : MonoBehaviour {
 
         //TELEPORTING UPWARDS
         
-        else if (Input.GetKey(KeyCode.UpArrow))      //When up arrow key is held down
+        else if (Input.GetKey(KeyCode.UpArrow))      
         {
             projection = Physics2D.Raycast(position, Vector2.up, temprange);
             Debug.DrawRay(position, new Vector2(0, temprange), Color.black);
-            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+            Time.timeScale = 0.3f;  
 
-            if (projection.collider != null) //When the raycast hits a collider
+            if (projection.collider != null) 
             {
-                Debug.Log("hitup");          //Console shows that the ray hit a collider
-                Debug.Log(projection.point);    //Console shows where the ray the collider
-                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
+                Debug.Log("hitup");          
+                Debug.Log(projection.point);    
+                temprange = projection.distance;
 
             }
 
@@ -109,9 +113,9 @@ public class Blink : MonoBehaviour {
                 temprange = shiftrange;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+            if (Input.GetKeyDown(KeyCode.LeftShift))    
             {
-                transform.Translate(new Vector2(0f, temprange));    //Teleports the character by the teleport distance (temprange)
+                transform.Translate(new Vector2(0f, temprange));    
             }
 
             
@@ -120,17 +124,16 @@ public class Blink : MonoBehaviour {
 
         //TELEPORTING DOWNWARDS
         
-        else if (Input.GetKey(KeyCode.DownArrow))    //When down arrow key is held down
-        {
+        else if (Input.GetKey(KeyCode.DownArrow)) { 
             projection = Physics2D.Raycast(position, Vector2.down, temprange);
             Debug.DrawRay(position, new Vector2(0, -temprange), Color.black);
-            Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
+            Time.timeScale = 0.3f;  
 
-            if (projection.collider != null) //When the raycast hits a collider
+            if (projection.collider != null) 
             {
-                Debug.Log("hitdown");          //Console shows that the ray hit a collider
-                Debug.Log(projection.point);    //Console shows where the ray the collider
-                temprange = projection.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+                Debug.Log("hitdown");          
+                Debug.Log(projection.point);    
+                temprange = projection.distance;    
 
 
             }
@@ -139,9 +142,9 @@ public class Blink : MonoBehaviour {
                 temprange = shiftrange;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+            if (Input.GetKeyDown(KeyCode.LeftShift))   
             {
-                transform.Translate(new Vector2(0f, -temprange));    //Teleports the character by the teleport distance (temprange)
+                transform.Translate(new Vector2(0f, -temprange));    
             }
 
         }
