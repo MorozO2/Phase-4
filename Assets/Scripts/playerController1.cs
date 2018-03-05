@@ -24,7 +24,7 @@ public class playerController1 : MonoBehaviour
     void Update()
     {
         //FOR MOVING THE CHARACTER
-        moving = false;
+        
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -37,6 +37,7 @@ public class playerController1 : MonoBehaviour
 
 
         //FOR ANIMATION
+        moving = false;
         if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)    //If horizontal input happens
         {
             moving = true;  //Moving bool becomes true

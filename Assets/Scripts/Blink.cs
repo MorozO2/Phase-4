@@ -11,6 +11,7 @@ public class Blink : MonoBehaviour {
     public GameObject proj;
     public GameObject projclone;
     private bool exists;
+    public float projspeed;
 
     Vector2 position;           //Variable for the player position
     Ray2D projection;
@@ -42,9 +43,11 @@ public class Blink : MonoBehaviour {
 
             if (exists == false)
             {
+                
                 projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;
+                //projclone.transform.Translate = 
                 exists = true;
-                //projclone.transform.position = new Vector3(temprange, 0, 0);
+                
             }
 
             if (hit.collider != null) //When the raycast hits a collider

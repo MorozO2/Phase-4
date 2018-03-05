@@ -16,7 +16,7 @@ public class ProjectionFollow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        targetposition = new Vector3(4, 4, 4);
-        transform.position = Vector3.Lerp(transform.position, targetposition, speed * Time.deltaTime);
+
+        
     }
 }
