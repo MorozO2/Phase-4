@@ -9,7 +9,8 @@ public class Blink : MonoBehaviour {
     private float temprange;    //Variable for storing the temporary value of the teleport distance
 
     public GameObject proj;
-    GameObject projclone;
+    public GameObject projclone;
+    private bool exists;
 
     Vector2 position;           //Variable for the player position
     Ray2D projection;
@@ -26,7 +27,7 @@ public class Blink : MonoBehaviour {
     {
         
         position = transform.position;  //sets "position" as transform.position (character's position)
-
+        
 
         
 
@@ -39,8 +40,12 @@ public class Blink : MonoBehaviour {
             Debug.DrawRay(position, new Vector2(temprange, 0), Color.black);
             Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
-            projclone = Instantiate(proj, projection.GetPoint(temprange) , Quaternion.identity) as GameObject;
-            
+            if (exists == false)
+            {
+                projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;
+                exists = true;
+                //projclone.transform.position = new Vector3(temprange, 0, 0);
+            }
 
             if (hit.collider != null) //When the raycast hits a collider
             {
@@ -68,7 +73,7 @@ public class Blink : MonoBehaviour {
         
         else if (Input.GetKey(KeyCode.LeftArrow))    
         {
-
+            projection = new Ray2D(position, Vector2.left);
             hit = Physics2D.Raycast(position, Vector2.left, temprange);
             Debug.DrawRay(position, new Vector2(-temprange, 0), Color.black);
             Time.timeScale = 0.3f;  
@@ -95,20 +100,21 @@ public class Blink : MonoBehaviour {
         }
         
 
-        /*
+        
         //TELEPORTING UPWARDS
         
         else if (Input.GetKey(KeyCode.UpArrow))      
         {
-            projection = Physics2D.Raycast(position, Vector2.up, temprange);
+            projection = new Ray2D(position, Vector2.up);
+            hit = Physics2D.Raycast(position, Vector2.up, temprange);
             Debug.DrawRay(position, new Vector2(0, temprange), Color.black);
             Time.timeScale = 0.3f;  
 
-            if (projection.collider != null) 
+            if (hit.collider != null) 
             {
                 Debug.Log("hitup");          
-                Debug.Log(projection.point);    
-                temprange = projection.distance;
+                Debug.Log(hit.point);    
+                temprange = hit.distance;
 
             }
 
@@ -128,16 +134,17 @@ public class Blink : MonoBehaviour {
 
         //TELEPORTING DOWNWARDS
         
-        else if (Input.GetKey(KeyCode.DownArrow)) { 
-            projection = Physics2D.Raycast(position, Vector2.down, temprange);
+        else if (Input.GetKey(KeyCode.DownArrow)) {
+            projection = new Ray2D(position, Vector2.down);
+            hit = Physics2D.Raycast(position, Vector2.down, temprange);
             Debug.DrawRay(position, new Vector2(0, -temprange), Color.black);
             Time.timeScale = 0.3f;  
 
-            if (projection.collider != null) 
+            if (hit.collider != null) 
             {
                 Debug.Log("hitdown");          
-                Debug.Log(projection.point);    
-                temprange = projection.distance;    
+                Debug.Log(hit.point);    
+                temprange = hit.distance;    
 
 
             }
@@ -155,9 +162,11 @@ public class Blink : MonoBehaviour {
 
         else 
         {
+            Destroy(projclone);
             Time.timeScale = 1f;
+            exists = false;
         }
-        */
+        
         
     } 
 }
