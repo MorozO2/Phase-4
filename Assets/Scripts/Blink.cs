@@ -8,10 +8,15 @@ public class Blink : MonoBehaviour {
     public float shiftrange;    //Defines the distance for the teleport
     private float temprange;    //Variable for storing the temporary value of the teleport distance
 
-    public GameObject proj;
-    public GameObject projclone;
+    public GameObject proj;         //Define object to be cloned for the projection
+    public GameObject projclone;    //Defines clone of projection
+    GameObject Blumpy;
+    GameObject Blumpy2;
+    
     private bool exists;
     public float projspeed;
+    
+   
 
     Vector2 position;           //Variable for the player position
     Ray2D projection;
@@ -20,7 +25,9 @@ public class Blink : MonoBehaviour {
     void Start () {
 
         temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
-       
+        Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
+        Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
+
     }
 
 
@@ -29,8 +36,7 @@ public class Blink : MonoBehaviour {
         
         position = transform.position;  //sets "position" as transform.position (character's position)
         
-
-        
+      
 
         //TELEPORTING TO THE RIGHT
 
@@ -40,15 +46,7 @@ public class Blink : MonoBehaviour {
             hit = Physics2D.Raycast(position, Vector2.right, temprange);
             Debug.DrawRay(position, new Vector2(temprange, 0), Color.black);
             Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
-
-            if (exists == false)
-            {
-                
-                projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;
-                //projclone.transform.Translate = 
-                exists = true;
-                
-            }
+            
 
             if (hit.collider != null) //When the raycast hits a collider
             {
@@ -63,11 +61,18 @@ public class Blink : MonoBehaviour {
                 temprange = shiftrange;                
             }
 
+            if (exists == false) //Condtion if "exists" bool is false
+            {
+                
+                projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
+                exists = true;  //Sets "bool" to true, so that it does not create any more of that object
+                projclone.transform.parent = Blumpy.transform;  //sets the created object clone as child of character, so that it follows it
+            }
+
             if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
             {
                 transform.Translate(new Vector2(temprange, 0f));    //Teleports the character by the teleport distance (temprange)
             }
-           
         }
 
      
@@ -93,7 +98,6 @@ public class Blink : MonoBehaviour {
             {
                 temprange = shiftrange;
             }
-
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
@@ -163,13 +167,16 @@ public class Blink : MonoBehaviour {
 
         }
 
-        else 
+        else
         {
+
+            exists = false;
             Destroy(projclone);
             Time.timeScale = 1f;
-            exists = false;
+            
+            print(exists);
         }
-        
-        
+      
+
     } 
 }
