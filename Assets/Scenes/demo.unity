@@ -135,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 294988345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 814289165}
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 814289164}
   - component: {fileID: 814289163}
   - component: {fileID: 814289166}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trap
   m_TagString: Goo
   m_Icon: {fileID: 0}
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sightStart: {fileID: 1041271674}
   sightEnd: {fileID: 294988346}
+  originalPos: {fileID: 0}
   spotted: 0
   speed: 2
 --- !u!212 &814289164
@@ -1237,7 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041690209}
   - component: {fileID: 1041690210}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1822,13 +1823,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979267174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e03eb65ae4d6494e90f09acd62b3fe1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d9ecbf87b74cd1498a951a4d66b31bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shiftrange: 5
   proj: {fileID: 1258033683876498, guid: 0a8f5f1859747204d8fada5e636a0f57, type: 2}
   projclone: {fileID: 0}
-  projspeed: 5
 --- !u!50 &1979267176
 Rigidbody2D:
   serializedVersion: 4

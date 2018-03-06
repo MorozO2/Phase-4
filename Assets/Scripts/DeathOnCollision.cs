@@ -9,7 +9,6 @@ public class DeathOnCollision : MonoBehaviour {
     
     public GameObject Door;
     Animator anim;
-    int death = Animator.StringToHash("deathanim");
 
     void Start () {
         Door = GameObject.FindGameObjectWithTag("Door");
