@@ -28,10 +28,7 @@ public class Blink : MonoBehaviour {
         temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
         Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
         Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
-        blinkright = new Vector2(temprange, 0);
-        blinkleft = new Vector2(-temprange, 0);
-        blinkup = new Vector2(0f, temprange);
-        blinkdown = new Vector2(0f, -temprange);
+        
 
 
 
@@ -42,9 +39,12 @@ public class Blink : MonoBehaviour {
     {
         
         position = transform.position;  //sets "position" as transform.position (character's position)
+        blinkright = new Vector2(temprange, 0);
+        blinkleft = new Vector2(-temprange, 0);
+        blinkup = new Vector2(0f, temprange);
+        blinkdown = new Vector2(0f, -temprange);
 
 
-        
         if (Input.GetKey(KeyCode.RightArrow))
         {
             BlinkDir(Vector2.right, blinkright, new Vector2(temprange, 0));
@@ -81,7 +81,7 @@ public class Blink : MonoBehaviour {
     {
 
         projection = new Ray2D(position, direction);
-        hit = Physics2D.Raycast(position, direction, temprange);
+        hit = Physics2D.Raycast(position, direction, temprange, 1 << LayerMask.NameToLayer("Walls"));
 
 
         Debug.DrawRay(position, debugl, Color.black);
@@ -106,10 +106,7 @@ public class Blink : MonoBehaviour {
             projclone.transform.parent = Blumpy.transform;  //sets the created object clone as child of character, so that it follows it
         }
 
-        else
-        {
-            
-        }
+        
 
         if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
         {
