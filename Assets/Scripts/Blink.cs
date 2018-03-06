@@ -25,10 +25,10 @@ public class Blink : MonoBehaviour {
    
     void Start () {
 
-        temprange = shiftrange;         // Sets temprange to default teleport distance (shiftrange)
+                // Sets temprange to default teleport distance (shiftrange)
         Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
         Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
-        
+        temprange = shiftrange;
 
 
 
@@ -68,7 +68,7 @@ public class Blink : MonoBehaviour {
         else
         {
 
-            temprange = shiftrange;
+            
             exists = false;
             Destroy(projclone);
             Time.timeScale = 1f;
@@ -94,9 +94,12 @@ public class Blink : MonoBehaviour {
                 Debug.Log(hit.point);    //Console shows where the ray the collider
                 temprange = hit.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
 
-
+                
         }
-
+         else
+        {
+            temprange = shiftrange;
+        }
 
         if (exists == false) //Condtion if "exists" bool is false
         {
@@ -108,14 +111,19 @@ public class Blink : MonoBehaviour {
 
         
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+        else if(Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
         {
             transform.Translate(blinkdir);    //Teleports the character by the teleport distance (temprange)
         }
 
+        /*else
+        {
+            temprange = shiftrange;
+        }*/
         
 
-        
+
+
     }
    
 }
