@@ -93,10 +93,9 @@ public class Blink : MonoBehaviour {
                 Debug.Log("hitright");          //Console shows that the ray hit a collider
                 Debug.Log(hit.point);    //Console shows where the ray the collider
                 temprange = hit.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
-
-                
         }
-         else
+         
+        else
         {
             temprange = shiftrange;
         }
@@ -105,8 +104,8 @@ public class Blink : MonoBehaviour {
         {
 
             projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
-            exists = true;  //Sets "bool" to true, so that it does not create any more of that object
-            projclone.transform.parent = Blumpy.transform;  //sets the created object clone as child of character, so that it follows it
+            projclone.transform.parent = Blumpy.transform;  //sets the created object clone as child of character, so that it follows it           
+            exists = true; //Sets "bool" to true, so that it does not create any more of that object
         }
 
         
