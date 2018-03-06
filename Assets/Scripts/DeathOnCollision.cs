@@ -27,7 +27,7 @@ public class DeathOnCollision : MonoBehaviour {
             
             Debug.Log("you died");
             anim.SetBool("dead", true);
-            Application.LoadLevel("demo");
+            Application.LoadLevel(Application.loadedLevel);
         }
         if(other.gameObject.tag == "PickUp")
             {

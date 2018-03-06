@@ -28,11 +28,11 @@ public class trapBehaviour : MonoBehaviour {
     {
         if (spotted == true)
         {
-            transform.Translate(Vector2.up * speed * Time.deltaTime);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
         if (spotted1 == true)
         {
-            transform.Translate(Vector2.down * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
     }
     
