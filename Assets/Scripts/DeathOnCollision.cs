@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 
@@ -13,6 +14,7 @@ public class DeathOnCollision : MonoBehaviour {
     void Start () {
         Door = GameObject.FindGameObjectWithTag("Door");
         anim = GetComponent<Animator>();
+  
     }
 
 	
@@ -27,14 +29,16 @@ public class DeathOnCollision : MonoBehaviour {
             
             Debug.Log("you died");
             anim.SetBool("dead", true);
-            Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if(other.gameObject.tag == "PickUp")
             {
             Destroy(other.gameObject);
             Destroy(Door);
         }
-
-        
+        if (other.gameObject.tag == "Trigger")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
