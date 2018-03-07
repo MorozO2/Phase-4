@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class trapBehaviour : MonoBehaviour {
+public class TrapUp : MonoBehaviour
+{
 
     public Transform sightStart, sightEnd, originalPos;
 
@@ -10,30 +11,30 @@ public class trapBehaviour : MonoBehaviour {
     public bool spotted1 = false;
     public int speed = 2;
 
-	void Update ()
+    void Update()
     {
         RayCasting();
         Behaviours();
-	}
+    }
 
-    void RayCasting ()
+    void RayCasting()
     {
         Debug.DrawLine(sightStart.position, sightEnd.position, Color.red);
         Debug.DrawLine(sightStart.position, originalPos.position, Color.blue);
-        spotted = Physics2D.Linecast(sightStart.position, sightEnd.position /*1 << 2*/);// if linecast detects a collider, bool spotted will be set to true
+        spotted = Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << 2);// if linecast detects a collider, bool spotted will be set to true
         spotted1 = Physics2D.Linecast(sightStart.position, originalPos.position, 1 << 2);
     }
 
-    void Behaviours ()
+    void Behaviours()
     {
         if (spotted == true)
         {
-            transform.Translate(Vector2.left * speed * Time.deltaTime);
+            transform.Translate(Vector2.up * speed * Time.deltaTime);
         }
         if (spotted1 == true)
         {
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.down * speed * Time.deltaTime);
         }
     }
-    
+
 }

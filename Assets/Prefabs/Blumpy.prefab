@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9ecbf87b74cd1498a951a4d66b31bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shiftrange: 5
+  shiftrange: 4
   proj: {fileID: 1258033683876498, guid: 0a8f5f1859747204d8fada5e636a0f57, type: 2}
   projclone: {fileID: 0}
 --- !u!120 &120733208631953450
