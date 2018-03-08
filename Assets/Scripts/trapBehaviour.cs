@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class trapBehaviour : MonoBehaviour {
 
-    public Transform sightStart, sightEnd, originalPos;
+    public Transform onTrap, sightEnd, sightStart;
 
     public bool spotted = false; //detects if Blumpy is in the raycast of the trap
     public bool spotted1 = false;
@@ -18,10 +18,10 @@ public class trapBehaviour : MonoBehaviour {
 
     void RayCasting ()
     {
-        Debug.DrawLine(sightStart.position, sightEnd.position, Color.red);
-        Debug.DrawLine(sightStart.position, originalPos.position, Color.blue);
-        spotted = Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << 2);// if linecast detects a collider, bool spotted will be set to true
-        spotted1 = Physics2D.Linecast(sightStart.position, originalPos.position, 1 << 2);
+        Debug.DrawLine(onTrap.position, sightEnd.position, Color.red);
+        Debug.DrawLine(onTrap.position, sightStart.position, Color.blue);
+        spotted = Physics2D.Linecast(onTrap.position, sightEnd.position, 1 << 2);// if linecast detects a collider, bool spotted will be set to true
+        spotted1 = Physics2D.Linecast(onTrap.position, sightStart.position, 1 << 2);
     }
 
     void Behaviours ()

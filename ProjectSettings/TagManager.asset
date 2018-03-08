@@ -8,6 +8,7 @@ TagManager:
   - Door
   - PickUp
   - Trigger
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 3349691499
+    locked: 0
+  - name: Goo
+    uniqueID: 1987254727
     locked: 0
   - name: Obstacles
     uniqueID: 1322238559

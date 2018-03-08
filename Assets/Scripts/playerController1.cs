@@ -6,6 +6,7 @@ public class playerController1 : MonoBehaviour
 {
     public Rigidbody2D player;
     public int moveSpeed;
+    public bool freezeRotation;
 
     //FOR ANIMATION
     private Animator animate;
@@ -27,7 +28,6 @@ public class playerController1 : MonoBehaviour
         
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-
         
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
         player.velocity = movement * moveSpeed;
