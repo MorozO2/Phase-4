@@ -20,7 +20,7 @@ public class trapBehaviour : MonoBehaviour {
     {
         Debug.DrawLine(sightStart.position, sightEnd.position, Color.red);
         Debug.DrawLine(sightStart.position, originalPos.position, Color.blue);
-        spotted = Physics2D.Linecast(sightStart.position, sightEnd.position /*1 << 2*/);// if linecast detects a collider, bool spotted will be set to true
+        spotted = Physics2D.Linecast(sightStart.position, sightEnd.position, 1 << 2);// if linecast detects a collider, bool spotted will be set to true
         spotted1 = Physics2D.Linecast(sightStart.position, originalPos.position, 1 << 2);
     }
 
