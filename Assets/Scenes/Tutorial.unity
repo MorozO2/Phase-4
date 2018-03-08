@@ -2417,6 +2417,11 @@ Tilemap:
     m_DirtyIndex: 0
   - serializedVersion: 1
     m_DirtyIndex: 0
+--- !u!4 &112272842 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4794179669665506, guid: f0265973b9f030042a3c70e3d0e53d5b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1931114151}
 --- !u!1001 &116849627
 Prefab:
   m_ObjectHideFlags: 0
@@ -4364,6 +4369,16 @@ Prefab:
       propertyPath: originalPos
       value: 
       objectReference: {fileID: 2050120856}
+    - target: {fileID: 114463426677205626, guid: f0265973b9f030042a3c70e3d0e53d5b,
+        type: 2}
+      propertyPath: sightStart
+      value: 
+      objectReference: {fileID: 2050120856}
+    - target: {fileID: 114463426677205626, guid: f0265973b9f030042a3c70e3d0e53d5b,
+        type: 2}
+      propertyPath: onTrap
+      value: 
+      objectReference: {fileID: 112272842}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0265973b9f030042a3c70e3d0e53d5b, type: 2}
   m_IsPrefabParent: 0

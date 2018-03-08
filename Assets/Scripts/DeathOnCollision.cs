@@ -10,11 +10,11 @@ public class DeathOnCollision : MonoBehaviour {
     
     public GameObject Door;
     Animator anim;
+    public bool alive;
 
     void Start () {
         Door = GameObject.FindGameObjectWithTag("Door");
         anim = GetComponent<Animator>();
-  
     }
 
 	
@@ -23,10 +23,11 @@ public class DeathOnCollision : MonoBehaviour {
     }
     void OnCollisionEnter2D (Collision2D other)
     {
-        
+        alive = true;
+
         if (other.gameObject.tag == "Goo")
         {
-            
+            alive = false;
             Debug.Log("you died");
             anim.SetBool("dead", true);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
