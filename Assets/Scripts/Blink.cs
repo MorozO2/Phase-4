@@ -10,7 +10,11 @@ public class Blink : MonoBehaviour {
     private bool exists;
     public GameObject proj;         //Define object to be cloned for the projection
     public GameObject projclone;    //Defines clone of projection
-    public GameObject arrowRight;
+
+    public GameObject arrow;
+    private GameObject arrclone;
+
+   
     
 
     GameObject Blumpy;
@@ -24,7 +28,11 @@ public class Blink : MonoBehaviour {
 
     Ray2D projection;
     RaycastHit2D hit;   //Raycast used for projecting the teleport distance
-   
+    Ray2D arrowright;
+    Ray2D arrowleft;
+    Ray2D arrowup;
+    Ray2D arrowdown;
+
     void Start () {
 
                 // Sets temprange to default teleport distance (shiftrange)
@@ -36,7 +44,7 @@ public class Blink : MonoBehaviour {
         blinkup = new Vector2(0f, temprange);
         blinkdown = new Vector2(0f, -temprange);
         
-
+        
 
 
     }
@@ -52,23 +60,25 @@ public class Blink : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow))
         {
 
-            //arrow.SetActive(true);
-
+            
             BlinkDir(Vector2.right, blinkright, new Vector2(temprange, 0));
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+           
             BlinkDir(Vector2.left, blinkleft, new Vector2(-temprange, 0));
         }
 
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            
             BlinkDir(Vector2.up, blinkup, new Vector2(0, temprange));
         }
 
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            
             BlinkDir(Vector2.down, blinkdown, new Vector2(0, -temprange));
         }
 
@@ -78,8 +88,9 @@ public class Blink : MonoBehaviour {
             
             exists = false;
             Destroy(projclone);
+            Destroy(arrclone);
             Time.timeScale = 1f;
-
+            
         }
 
     }
@@ -89,6 +100,12 @@ public class Blink : MonoBehaviour {
 
         projection = new Ray2D(position, direction);
         hit = Physics2D.Raycast(position, direction, temprange, 1 << LayerMask.NameToLayer("Walls"));
+
+        
+        arrowright = new Ray2D(position, Vector2.right);
+        arrowleft = new Ray2D(position, Vector2.left);
+        arrowup = new Ray2D(position, Vector2.up);
+        arrowdown = new Ray2D(position, Vector2.down);
 
 
         Debug.DrawRay(position, debugl, Color.black);
@@ -109,6 +126,8 @@ public class Blink : MonoBehaviour {
 
         if (exists == false) //Condtion if "exists" bool is false
         {
+            arrclone = Instantiate(arrow, arrowright.GetPoint(0.5F), Quaternion.identity) as GameObject;
+            arrclone.transform.parent = Blumpy.transform;
 
             projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
             projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
