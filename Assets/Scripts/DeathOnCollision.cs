@@ -29,6 +29,7 @@ public class DeathOnCollision : MonoBehaviour {
         {
             control.enabled = false;
             characterBlink.enabled = false;
+            gameObject.layer = 10;
         }
     }
 
