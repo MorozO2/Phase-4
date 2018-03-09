@@ -10,6 +10,8 @@ public class Blink : MonoBehaviour {
     private bool exists;
     public GameObject proj;         //Define object to be cloned for the projection
     public GameObject projclone;    //Defines clone of projection
+    public GameObject arrowRight;
+    
 
     GameObject Blumpy;
     GameObject Blumpy2;
@@ -29,6 +31,11 @@ public class Blink : MonoBehaviour {
         Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
         Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
         temprange = shiftrange;
+        blinkright = new Vector2(temprange, 0);
+        blinkleft = new Vector2(-temprange, 0);
+        blinkup = new Vector2(0f, temprange);
+        blinkdown = new Vector2(0f, -temprange);
+        
 
 
 
@@ -38,15 +45,15 @@ public class Blink : MonoBehaviour {
     void Update()
     {
         
-        position = transform.position;  //sets "position" as transform.position (character's position)
-        blinkright = new Vector2(temprange, 0);
-        blinkleft = new Vector2(-temprange, 0);
-        blinkup = new Vector2(0f, temprange);
-        blinkdown = new Vector2(0f, -temprange);
 
+        position = transform.position;  //sets "position" as transform.position (character's position)
+       
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
+
+            //arrow.SetActive(true);
+
             BlinkDir(Vector2.right, blinkright, new Vector2(temprange, 0));
         }
 
@@ -104,8 +111,8 @@ public class Blink : MonoBehaviour {
         {
 
             projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
-            projclone.transform.parent = Blumpy.transform;  //sets the created object clone as child of character, so that it follows it           
-            exists = true; //Sets "bool" to true, so that it does not create any more of that object
+            projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
+            exists = true;  //Sets "bool" to true, so that it does not create any more of that object
         }
 
         
@@ -114,13 +121,6 @@ public class Blink : MonoBehaviour {
         {
             transform.Translate(blinkdir);    //Teleports the character by the teleport distance (temprange)
         }
-
-        /*else
-        {
-            temprange = shiftrange;
-        }*/
-        
-
 
 
     }

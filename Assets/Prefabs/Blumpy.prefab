@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114455211440599562}
   - component: {fileID: 114068293911594806}
   - component: {fileID: 50682936274363268}
+  - component: {fileID: 114038022437730624}
   - component: {fileID: 114353060779257828}
   - component: {fileID: 95394448301993490}
   - component: {fileID: 120064870155264368}
@@ -99,6 +100,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114038022437730624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771318386555582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48823018a76f0314f98ea6bf7c5726e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door: {fileID: 0}
+  dead: 0
+  control: {fileID: 0}
+  characterBlink: {fileID: 0}
 --- !u!114 &114068293911594806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,6 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 0}
+  anim: {fileID: 0}
+  alive: 0
 --- !u!114 &114455211440599562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,6 +157,7 @@ MonoBehaviour:
   shiftrange: 4
   proj: {fileID: 1258033683876498, guid: 0a8f5f1859747204d8fada5e636a0f57, type: 2}
   projclone: {fileID: 0}
+  arrowRight: {fileID: 0}
 --- !u!120 &120064870155264368
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -259,7 +278,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 186872999
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300012, guid: 85a463cb4db869241a082e61d0ed5cdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

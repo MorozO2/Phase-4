@@ -10,27 +10,37 @@ public class DeathOnCollision : MonoBehaviour {
     
     public GameObject Door;
     Animator anim;
-    public bool alive;
+    public bool dead = false;
+    public playerController1 control;
+    public Blink characterBlink;
 
     void Start () {
         Door = GameObject.FindGameObjectWithTag("Door");
         anim = GetComponent<Animator>();
+        control = GetComponent<playerController1>();
+        characterBlink = GetComponent<Blink>();
+
     }
 
 	
 	// Update is called once per frame
 	void Update () {
+        if (dead==true)
+        {
+            control.enabled = false;
+            characterBlink.enabled = false;
+        }
     }
+
     void OnCollisionEnter2D (Collision2D other)
     {
-        alive = true;
-
         if (other.gameObject.tag == "Goo")
         {
-            alive = false;
+            dead = true;
             Debug.Log("you died");
             anim.SetBool("dead", true);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(WaitBeforeNextScene(0.6f));
+
         }
         if(other.gameObject.tag == "PickUp")
             {
@@ -41,5 +51,10 @@ public class DeathOnCollision : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+    IEnumerator WaitBeforeNextScene(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
