@@ -916,6 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shiftrange: 4
   proj: {fileID: 1258033683876498, guid: 0a8f5f1859747204d8fada5e636a0f57, type: 2}
+  growthRate: 0
 --- !u!114 &581464363
 MonoBehaviour:
   m_ObjectHideFlags: 1

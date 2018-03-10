@@ -27,6 +27,8 @@ public class Blink : MonoBehaviour {
 
     Ray2D projection;
     RaycastHit2D hit;   //Raycast used for projecting the teleport distance
+
+    public float growthRate;
     
 
     void Start () {
@@ -45,6 +47,10 @@ public class Blink : MonoBehaviour {
 
     void Update()
     {
+        if(exists)
+        {
+            UpdateProjectionLocation();
+        }
 
         blinkright = new Vector2(temprange, 0);
         blinkleft = new Vector2(-temprange, 0);
@@ -80,6 +86,7 @@ public class Blink : MonoBehaviour {
             Time.timeScale = 1f;            
         }
 
+
     }
 
     void BlinkDir (Vector2 direction, Vector2 blinkdir, Vector2 debugl)
@@ -101,14 +108,23 @@ public class Blink : MonoBehaviour {
 
         else
         {
-            temprange = shiftrange;
+            temprange += Time.deltaTime * growthRate;
+            print("leghtening "+temprange);
+            if(temprange >= shiftrange)
+            {
+                print("stopped lengthening");   
+                temprange = shiftrange;
+            }
         }
 
         if (exists == false) //Condtion if "exists" bool is false
         {            
             projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
-            projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
+           // projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
             exists = true;  //Sets "bool" to true, so that it does not create any more of that object
+
+
+            projclone.transform.position = transform.position;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
@@ -116,12 +132,18 @@ public class Blink : MonoBehaviour {
             transform.Translate(blinkdir);    //Teleports the character by the teleport distance (temprange)
         }
 
-        
-        
 
-       
+    }
 
 
+    void UpdateProjectionLocation()
+    {
+        if(hit)
+        {
+            projclone.transform.position = hit.point;
+
+        } else
+        projclone.transform.position = projection.GetPoint(shiftrange);
     }
    
 }
