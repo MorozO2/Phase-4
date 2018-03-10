@@ -20,10 +20,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4053869170198936}
   - component: {fileID: 212959964880325236}
-  - component: {fileID: 114455211440599562}
   - component: {fileID: 114068293911594806}
-  - component: {fileID: 50682936274363268}
+  - component: {fileID: 114923751855622534}
   - component: {fileID: 114038022437730624}
+  - component: {fileID: 114897742729287210}
+  - component: {fileID: 50682936274363268}
   - component: {fileID: 114353060779257828}
   - component: {fileID: 95394448301993490}
   - component: {fileID: 120064870155264368}
@@ -140,10 +141,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7935ac4ffbd67004e91b14ff73254ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 0}
-  anim: {fileID: 0}
-  alive: 0
---- !u!114 &114455211440599562
+--- !u!114 &114897742729287210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1771318386555582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6a458bb498be94d988f30f0aec8fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowRight: {fileID: 1752400229417024, guid: a9c3a7ea2d8f71741a489926e5a36691, type: 2}
+  ArrowLeft: {fileID: 1742223429336952, guid: 654fdae88220f9541a6ddaf2f3469833, type: 2}
+  ArrowUp: {fileID: 1061981192492110, guid: ffe9e70427bd6204bbe265bd92f26968, type: 2}
+  ArrowDown: {fileID: 1211021998483272, guid: 6e72df82f3761fa4285ef2cdda657be2, type: 2}
+--- !u!114 &114923751855622534
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -156,8 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shiftrange: 4
   proj: {fileID: 1258033683876498, guid: 0a8f5f1859747204d8fada5e636a0f57, type: 2}
-  projclone: {fileID: 0}
-  arrowRight: {fileID: 0}
 --- !u!120 &120064870155264368
 LineRenderer:
   m_ObjectHideFlags: 1

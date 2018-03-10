@@ -9,10 +9,9 @@ public class Blink : MonoBehaviour {
     private float temprange;    //Variable for storing the temporary value of the teleport distance
     private bool exists;
     public GameObject proj;         //Define object to be cloned for the projection
-    public GameObject projclone;    //Defines clone of projection
+    private GameObject projclone;    //Defines clone of projection
 
-    public GameObject arrow;
-    private GameObject arrclone;
+  
 
    
     
@@ -28,17 +27,14 @@ public class Blink : MonoBehaviour {
 
     Ray2D projection;
     RaycastHit2D hit;   //Raycast used for projecting the teleport distance
-    Ray2D arrowright;
-    Ray2D arrowleft;
-    Ray2D arrowup;
-    Ray2D arrowdown;
+    
 
     void Start () {
 
-                // Sets temprange to default teleport distance (shiftrange)
+        temprange = shiftrange;        // Sets temprange to default teleport distance (shiftrange)
         Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
         Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
-        temprange = shiftrange;
+        
         blinkright = new Vector2(temprange, 0);
         blinkleft = new Vector2(-temprange, 0);
         blinkup = new Vector2(0f, temprange);
@@ -55,32 +51,27 @@ public class Blink : MonoBehaviour {
         
 
         position = transform.position;  //sets "position" as transform.position (character's position)
-       
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-
-            
-            BlinkDir(Vector2.right, blinkright, new Vector2(temprange, 0));
+            BlinkDir(Vector2.right, blinkright, blinkright);
         }
 
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-           
-            BlinkDir(Vector2.left, blinkleft, new Vector2(-temprange, 0));
+            BlinkDir(Vector2.left, blinkleft, blinkleft);
         }
 
         else if (Input.GetKey(KeyCode.UpArrow))
         {
-            
-            BlinkDir(Vector2.up, blinkup, new Vector2(0, temprange));
+            BlinkDir(Vector2.up, blinkup, blinkup);
         }
 
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            
-            BlinkDir(Vector2.down, blinkdown, new Vector2(0, -temprange));
+            BlinkDir(Vector2.down, blinkdown, blinkdown);
         }
+
 
         else
         {
@@ -88,7 +79,6 @@ public class Blink : MonoBehaviour {
             
             exists = false;
             Destroy(projclone);
-            Destroy(arrclone);
             Time.timeScale = 1f;
             
         }
@@ -101,42 +91,33 @@ public class Blink : MonoBehaviour {
         projection = new Ray2D(position, direction);
         hit = Physics2D.Raycast(position, direction, temprange, 1 << LayerMask.NameToLayer("Walls"));
 
-        
-        arrowright = new Ray2D(position, Vector2.right);
-        arrowleft = new Ray2D(position, Vector2.left);
-        arrowup = new Ray2D(position, Vector2.up);
-        arrowdown = new Ray2D(position, Vector2.down);
-
-
         Debug.DrawRay(position, debugl, Color.black);
         Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
 
         if (hit.collider != null) //When the raycast hits a collider
         {
-                Debug.Log("hitright");          //Console shows that the ray hit a collider
-                Debug.Log(hit.point);    //Console shows where the ray the collider
-                temprange = hit.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
+            Debug.Log("hitright");          //Console shows that the ray hit a collider
+            Debug.Log(hit.point);    //Console shows where the ray the collider
+            temprange = hit.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
         }
          
-        else
-        {
-            temprange = shiftrange;
-        }
+       
 
         if (exists == false) //Condtion if "exists" bool is false
-        {
-            arrclone = Instantiate(arrow, arrowright.GetPoint(0.5F), Quaternion.identity) as GameObject;
-            arrclone.transform.parent = Blumpy.transform;
-
+        {            
             projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
             projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
             exists = true;  //Sets "bool" to true, so that it does not create any more of that object
         }
 
+        else
+        {
+            temprange = shiftrange;
+        }
         
 
-        else if(Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
+        if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
         {
             transform.Translate(blinkdir);    //Teleports the character by the teleport distance (temprange)
         }
