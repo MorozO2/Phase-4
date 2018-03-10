@@ -35,10 +35,7 @@ public class Blink : MonoBehaviour {
         Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
         Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
         
-        blinkright = new Vector2(temprange, 0);
-        blinkleft = new Vector2(-temprange, 0);
-        blinkup = new Vector2(0f, temprange);
-        blinkdown = new Vector2(0f, -temprange);
+        
         
         
 
@@ -48,8 +45,11 @@ public class Blink : MonoBehaviour {
 
     void Update()
     {
-        
 
+        blinkright = new Vector2(temprange, 0);
+        blinkleft = new Vector2(-temprange, 0);
+        blinkup = new Vector2(0f, temprange);
+        blinkdown = new Vector2(0f, -temprange);
         position = transform.position;  //sets "position" as transform.position (character's position)
 
         if (Input.GetKey(KeyCode.RightArrow))
@@ -74,13 +74,10 @@ public class Blink : MonoBehaviour {
 
 
         else
-        {
-
-            
+        {            
             exists = false;
             Destroy(projclone);
-            Time.timeScale = 1f;
-            
+            Time.timeScale = 1f;            
         }
 
     }
@@ -94,15 +91,18 @@ public class Blink : MonoBehaviour {
         Debug.DrawRay(position, debugl, Color.black);
         Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
 
-
+       
         if (hit.collider != null) //When the raycast hits a collider
         {
             Debug.Log("hitright");          //Console shows that the ray hit a collider
             Debug.Log(hit.point);    //Console shows where the ray the collider
             temprange = hit.distance;    //Sets temprange as the distance between the ray source(character) and the collision point
         }
-         
-       
+
+        else
+        {
+            temprange = shiftrange;
+        }
 
         if (exists == false) //Condtion if "exists" bool is false
         {            
@@ -111,16 +111,15 @@ public class Blink : MonoBehaviour {
             exists = true;  //Sets "bool" to true, so that it does not create any more of that object
         }
 
-        else
-        {
-            temprange = shiftrange;
-        }
-        
-
         if (Input.GetKeyDown(KeyCode.LeftShift))    //Press shift to teleport
         {
             transform.Translate(blinkdir);    //Teleports the character by the teleport distance (temprange)
         }
+
+        
+        
+
+       
 
 
     }
