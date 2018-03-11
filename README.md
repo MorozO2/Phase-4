@@ -1,6 +1,4 @@
-# Phase-4
+# Blumpy The Rat
 Game project for studies
 
-JK LMAO
-
-mikel is best
+Short video game about a rat that teleports and has to run trials for science. 
