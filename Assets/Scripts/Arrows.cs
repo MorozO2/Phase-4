@@ -72,7 +72,7 @@ public class Arrows : MonoBehaviour {
     }
 
 
-    //FUNCTION FOR CREATING SPAWNING ARROW
+    //FUNCTION FOR SPAWNING ARROW
     void ArrowSpawn(Ray2D arrowplace, GameObject arrow)  //Takes in Ray2D (to determine position of arrow) and a gameobject to spawn a clone of
     {
 

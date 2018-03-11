@@ -11,14 +11,6 @@ public class Blink : MonoBehaviour {
     public GameObject proj;         //Define object to be cloned for the projection
     private GameObject projclone;    //Defines clone of projection
 
-  
-
-   
-    
-
-    GameObject Blumpy;
-    GameObject Blumpy2;
-
     Vector2 position;           //Variable for the player position
     Vector2 blinkright;
     Vector2 blinkleft;
@@ -34,13 +26,6 @@ public class Blink : MonoBehaviour {
     void Start () {
 
         temprange = shiftrange;        // Sets temprange to default teleport distance (shiftrange)
-        Blumpy = GameObject.Find("Blumpy");     //Sets object Blumpy as "Blumpy" 
-        Blumpy2 = GameObject.Find("Blumpy2");   //Sets object Blumpy2 as "Blumpy2" 
-        
-        
-        
-        
-
 
     }
 
