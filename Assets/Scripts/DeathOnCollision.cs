@@ -9,16 +9,20 @@ public class DeathOnCollision : MonoBehaviour {
 
     
     public GameObject Door;
+    public GameObject song;
     Animator anim;
     public bool dead = false;
     public playerController1 control;
     public Blink characterBlink;
+    public Arrows arrows;
 
     void Start () {
         Door = GameObject.FindGameObjectWithTag("Door");
+        song = GameObject.FindGameObjectWithTag("Audio");
         anim = GetComponent<Animator>();
         control = GetComponent<playerController1>();
         characterBlink = GetComponent<Blink>();
+        arrows = GetComponent<Arrows>();
 
     }
 
@@ -29,6 +33,7 @@ public class DeathOnCollision : MonoBehaviour {
         {
             control.enabled = false;
             characterBlink.enabled = false;
+            arrows.enabled = false;
             gameObject.layer = 10;
         }
     }
@@ -50,6 +55,7 @@ public class DeathOnCollision : MonoBehaviour {
         }
         if (other.gameObject.tag == "Trigger")
         {
+            Destroy(song);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
