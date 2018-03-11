@@ -108,7 +108,7 @@ public class Blink : MonoBehaviour {
 
         else
         {
-            temprange += Time.deltaTime * growthRate; //Makes ray gro according to growth rate until in hit shiftrange length or wall collider
+            temprange += Time.deltaTime * growthRate; //Makes ray grow according to growth rate until in hit shiftrange length or wall collider
             print("leghtening "+temprange);
             if(temprange >= shiftrange)
             {
@@ -119,11 +119,8 @@ public class Blink : MonoBehaviour {
 
         if (exists == false) //Condtion if "exists" bool is false
         {            
-            projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange              
-           // projclone.transform.parent = Blumpy.transform;      //sets the created object clone as child of character, so that it follows it           
+            projclone = Instantiate(proj, projection.GetPoint(temprange), Quaternion.identity) as GameObject;   //Creates an object "projection" at temprange                     
             exists = true;  //Sets "bool" to true, so that it does not create any more of that object
-
-
             projclone.transform.position = transform.position;
         }
 
@@ -135,7 +132,7 @@ public class Blink : MonoBehaviour {
 
     }
 
-
+    //MOVING THE PROJECTED OBJECT ACCORDING TO THE RAYCAST
     void UpdateProjectionLocation()
     {
         if(hit)
