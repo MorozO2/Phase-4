@@ -102,7 +102,7 @@ MonoBehaviour:
   originalPos: {fileID: 0}
   spotted: 0
   spotted1: 0
-  speed: 2
+  speed: 5
 --- !u!212 &212089071242699664
 SpriteRenderer:
   m_ObjectHideFlags: 1

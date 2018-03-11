@@ -108,7 +108,7 @@ public class Blink : MonoBehaviour {
 
         else
         {
-            temprange += Time.deltaTime * growthRate;
+            temprange += Time.deltaTime * growthRate; //Makes ray gro according to growth rate until in hit shiftrange length or wall collider
             print("leghtening "+temprange);
             if(temprange >= shiftrange)
             {

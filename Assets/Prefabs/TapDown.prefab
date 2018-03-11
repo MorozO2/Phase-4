@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce7518f36865034e9c8602bdef6a7e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sightStart: {fileID: 4513439620572334}
+  onTrap: {fileID: 0}
   sightEnd: {fileID: 0}
-  originalPos: {fileID: 0}
+  sightStart: {fileID: 4513439620572334}
   spotted: 0
   spotted1: 0
   speed: 5
@@ -120,7 +120,7 @@ MonoBehaviour:
   originalPos: {fileID: 0}
   spotted: 0
   spotted1: 0
-  speed: 2
+  speed: 5
 --- !u!212 &212345445312417130
 SpriteRenderer:
   m_ObjectHideFlags: 1
