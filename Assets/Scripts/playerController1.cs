@@ -6,8 +6,6 @@ public class playerController1 : MonoBehaviour
 {
     public Rigidbody2D player;
     public int moveSpeed;
-    public bool freezeRotation;
-
 
     //FOR ANIMATION
     private Animator animate;
@@ -15,10 +13,9 @@ public class playerController1 : MonoBehaviour
     private Vector2 lastmove;
     //FOR ANIMATION
 
-    // Use this for initialization
     void Start()
     {
-        player = GetComponent<Rigidbody2D>();
+        player = GetComponent<Rigidbody2D>(); // Character rigidbody
         animate = GetComponent<Animator>();  //Necessary for animator
         
 
