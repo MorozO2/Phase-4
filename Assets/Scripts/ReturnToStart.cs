@@ -5,13 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class ReturnToStart : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
+
+        //Brings player back to start menu from end screen by pressing escape 
 		if(Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(0);

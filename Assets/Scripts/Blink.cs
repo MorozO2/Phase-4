@@ -7,20 +7,21 @@ public class Blink : MonoBehaviour {
     
     public float shiftrange;    //Defines the distance for the teleport
     private float temprange;    //Variable for storing the temporary value of the teleport distance
-    private bool exists;
+    private bool exists;            //Bool for instantiating the projection image
     public GameObject proj;         //Define object to be cloned for the projection
     private GameObject projclone;    //Defines clone of projection
 
     Vector2 position;           //Variable for the player position
-    Vector2 blinkright;
+
+    Vector2 blinkright;     //Vector variables for blinking direction
     Vector2 blinkleft;
     Vector2 blinkup;
     Vector2 blinkdown;
 
-    Ray2D projection;
-    RaycastHit2D hit;   //Raycast used for projecting the teleport distance
+    Ray2D projection;       //Raycast used for projecting the teleport distance
+    RaycastHit2D hit;   
 
-    public float growthRate;
+    public float growthRate;  //Float for rate at which the raycast grows back to full length
     
 
     void Start () {
@@ -32,17 +33,21 @@ public class Blink : MonoBehaviour {
 
     void Update()
     {
-        if(exists)
+        if(exists) //When bool "exists" is set to true, i.e. a key is held down, calls the UpdateProjectionLocation function to change the projected image's position
         {
             UpdateProjectionLocation();
         }
 
+        //ASSIGNS VECTORS TO THE BLINKING DIRECTIONS
         blinkright = new Vector2(temprange, 0);
         blinkleft = new Vector2(-temprange, 0);
         blinkup = new Vector2(0f, temprange);
         blinkdown = new Vector2(0f, -temprange);
+
         position = transform.position;  //sets "position" as transform.position (character's position)
 
+
+        //CALLS THE BLINK FUNCTION AND INPUTS PARAMETERS ACCORDING TO THE DIRECTION
         if (Input.GetKey(KeyCode.RightArrow))
         {
             BlinkDir(Vector2.right, blinkright, blinkright);
@@ -64,6 +69,7 @@ public class Blink : MonoBehaviour {
         }
 
 
+        //IF KEYS ARE NOT HELD DOWN, SETS THE EXIST BOOL TO FALSE (SO THE PROJECTION DOESN'T INSTANTIATE), RESUMES NORMAL TIME FLOW AND DESTROYS THE PROJECTION IMAGE
         else
         {            
             exists = false;
@@ -77,8 +83,9 @@ public class Blink : MonoBehaviour {
     void BlinkDir (Vector2 direction, Vector2 blinkdir, Vector2 debugl)
     {
 
-        projection = new Ray2D(position, direction);
-        hit = Physics2D.Raycast(position, direction, temprange, 1 << LayerMask.NameToLayer("Walls"));
+
+        projection = new Ray2D(position, direction);    //Casts a ray from the character position into a direction according to the inputted parameters
+        hit = Physics2D.Raycast(position, direction, temprange, 1 << LayerMask.NameToLayer("Walls")); //Raycast2D for determining the length of the raycast and checking for walls
 
         Debug.DrawRay(position, debugl, Color.black);
         Time.timeScale = 0.3f;  //Slows down time when arrow key is held down
@@ -97,7 +104,7 @@ public class Blink : MonoBehaviour {
             print("leghtening "+temprange);
             if(temprange >= shiftrange)
             {
-                print("stopped lengthening");   
+                print("stopped lengthening");   //Stops ray growth when it reaches max length (shiftrange)
                 temprange = shiftrange;
             }
         }
@@ -120,12 +127,12 @@ public class Blink : MonoBehaviour {
     //MOVING THE PROJECTED OBJECT ACCORDING TO THE RAYCAST
     void UpdateProjectionLocation()
     {
-        if(hit)
+        if(hit) //Puts projected image at point where the ray collides with the wall
         {
             projclone.transform.position = hit.point;
 
         } else
-        projclone.transform.position = projection.GetPoint(shiftrange);
+        projclone.transform.position = projection.GetPoint(shiftrange);     //Sets the projected image where the raycast ends (max distance)
     }
    
 }

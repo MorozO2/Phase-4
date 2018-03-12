@@ -8,13 +8,10 @@ public class CameraController : MonoBehaviour {
     private Vector3 targetposition;
     public float speed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
+
+        //Makes the camera follow the player and inputted speed
 
         targetposition = new Vector3(followTarget.transform.position.x, followTarget.transform.position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, targetposition, speed * Time.deltaTime);
