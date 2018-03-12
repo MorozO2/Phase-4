@@ -114,7 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   moveSpeed: 5
-  freezeRotation: 0
 --- !u!114 &114422130466795904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,8 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ArrowRight: {fileID: 1494749032719840, guid: a9c3a7ea2d8f71741a489926e5a36691, type: 2}
   ArrowLeft: {fileID: 1522248877155464, guid: 654fdae88220f9541a6ddaf2f3469833, type: 2}
-  ArrowUp: {fileID: 0}
-  ArrowDown: {fileID: 0}
+  ArrowUp: {fileID: 1380923405482372, guid: 927250011f8b9094fbd710a1464e3783, type: 2}
+  ArrowDown: {fileID: 1833916235825902, guid: 94f53dccf4ad70145a9852e937354993, type: 2}
 --- !u!120 &120894506417460496
 LineRenderer:
   m_ObjectHideFlags: 1
