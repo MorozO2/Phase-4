@@ -9,6 +9,8 @@ TagManager:
   - PickUp
   - Trigger
   - Audio
+  - Play
+  - Quit
   layers:
   - Default
   - TransparentFX
@@ -57,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 186872999
+    locked: 0
+  - name: Background
+    uniqueID: 2396502029
     locked: 0

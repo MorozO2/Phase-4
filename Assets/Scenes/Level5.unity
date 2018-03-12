@@ -1435,6 +1435,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4307082757453516, guid: c6370534cdecd6a4eb8d76e41298f2e3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -7.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307082757453516, guid: c6370534cdecd6a4eb8d76e41298f2e3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307082757453516, guid: c6370534cdecd6a4eb8d76e41298f2e3, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6370534cdecd6a4eb8d76e41298f2e3, type: 2}
   m_IsPrefabParent: 0
@@ -2606,7 +2618,8 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114463426677205626, guid: f0265973b9f030042a3c70e3d0e53d5b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f0265973b9f030042a3c70e3d0e53d5b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1749898392 stripped
@@ -2679,7 +2692,8 @@ Prefab:
       propertyPath: m_Name
       value: Trap (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114463426677205626, guid: f0265973b9f030042a3c70e3d0e53d5b, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f0265973b9f030042a3c70e3d0e53d5b, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1816813939 stripped
