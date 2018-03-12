@@ -154,7 +154,7 @@ MonoBehaviour:
   ArrowRight: {fileID: 1494749032719840, guid: a9c3a7ea2d8f71741a489926e5a36691, type: 2}
   ArrowLeft: {fileID: 1522248877155464, guid: 654fdae88220f9541a6ddaf2f3469833, type: 2}
   ArrowUp: {fileID: 1259841373459932, guid: ffe9e70427bd6204bbe265bd92f26968, type: 2}
-  ArrowDown: {fileID: 1211021998483272, guid: 6e72df82f3761fa4285ef2cdda657be2, type: 2}
+  ArrowDown: {fileID: 0}
 --- !u!114 &114579126964674304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,9 +167,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Door: {fileID: 0}
+  song: {fileID: 0}
   dead: 0
   control: {fileID: 0}
   characterBlink: {fileID: 0}
+  arrows: {fileID: 0}
 --- !u!120 &120625352390795564
 LineRenderer:
   m_ObjectHideFlags: 1

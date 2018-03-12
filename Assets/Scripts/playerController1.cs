@@ -8,6 +8,7 @@ public class playerController1 : MonoBehaviour
     public int moveSpeed;
     public bool freezeRotation;
 
+
     //FOR ANIMATION
     private Animator animate;
     private bool moving;
@@ -19,6 +20,8 @@ public class playerController1 : MonoBehaviour
     {
         player = GetComponent<Rigidbody2D>();
         animate = GetComponent<Animator>();  //Necessary for animator
+        
+
     }
 
     // Update is called once per frame
@@ -28,7 +31,8 @@ public class playerController1 : MonoBehaviour
         
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        
+
+       
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
         player.velocity = movement * moveSpeed;
         //FOR MOVING THE CHARACTER
