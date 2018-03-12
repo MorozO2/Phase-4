@@ -3978,6 +3978,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c6370534cdecd6a4eb8d76e41298f2e3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &554231158 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1033994047950966, guid: c6370534cdecd6a4eb8d76e41298f2e3,
+    type: 2}
+  m_PrefabInternal: {fileID: 554231157}
 --- !u!1 &595412021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4071,7 +4076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7197f1634995e4b4f9ef8498e19c46d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 554231158}
   speed: 4
 --- !u!1 &1107783048
 GameObject:
@@ -4267,6 +4272,11 @@ Prefab:
     - target: {fileID: 4939709203705452, guid: c98f8b2027d3a6b49bbfe73821ced293, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82372984302461224, guid: c98f8b2027d3a6b49bbfe73821ced293,
+        type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c98f8b2027d3a6b49bbfe73821ced293, type: 2}
